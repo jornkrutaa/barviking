@@ -1,4 +1,6 @@
 var express = require('express');
+var connection  = require('express-myconnection'); 
+var mysql = require('mysql');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -12,6 +14,17 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// MySQL Connection
+app.use(
+    connection(mysql,{
+        host: 'localhost',
+        user: 'root',
+        password : '',
+        port : 3306,
+        database:'barviking'
+    },'request')
+);
 
 // view engine setup
 app.engine('html', cons.swig);
@@ -36,10 +49,15 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+/*
 app.get('/', function(req, res) {
     res.render('index.html');
 });
+*/
+app.get('/', routes.index);//route customer list
 
+app.get('/countries', routes.countries.list);
+app.use(app.router);
 // error handlers
 
 // development error handler
