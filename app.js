@@ -49,15 +49,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-/*
+
 app.get('/', function(req, res) {
     res.render('index.html');
 });
-*/
-app.get('/', routes.index);//route customer list
 
+/*
 app.get('/countries', routes.countries.list);
-app.use(app.router);
+*/
 // error handlers
 
 // development error handler
