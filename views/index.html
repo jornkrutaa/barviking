@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
     <head>
         <title>Bar Viking</title>
         <meta charset="UTF-8">
@@ -9,11 +9,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
         <script src="../javascripts/mainController.js"></script>
+        <script src="../javascripts/app.js"></script>
         <script src="../javascripts/index.js"></script>
     </head>
-    <body>
+    <body ng-app="myApp">
+        <div id="header-container">{% include '../views/partials/header.html' %}</div>
         <div>Hello World!</div>
-        <div ng-controller="MainController">{{greeting}}</div>
+        <div ui-view></div>
     </body>
 </html>

@@ -4,6 +4,17 @@ var mysql = require('mysql');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log("Index called");
+  res.render('index', { title: 'Bar Viking' });
+});
+
+router.get('/views/partials/:name', function (req, res) {
+  var name = req.params.name;
+  res.render('../views/partials/' + name);
+});
+
+router.get('*', function(req, res, next) {
+  console.log("Catch all (*) called");
   res.render('index', { title: 'Bar Viking' });
 });
 

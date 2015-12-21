@@ -11,7 +11,7 @@ var swig = require('swig');
 var cons = require('consolidate');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+
 
 var app = express();
 
@@ -48,16 +48,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
-app.get('/', function(req, res) {
-    res.render('index.html');
-});
-
-/*
-app.get('/countries', routes.countries.list);
-*/
-// error handlers
 
 // development error handler
 // will print stacktrace
