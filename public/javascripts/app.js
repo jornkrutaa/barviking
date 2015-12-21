@@ -5,20 +5,17 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // Now set up the states
   $stateProvider
-    .state('contacts', {
-      url: "/contacts",
-      templateUrl: "/views/partials/contacts.html"
-    });
-     $stateProvider
+    .state('bars', {
+      url: "/bars",
+      templateUrl: "/views/partials/bars.html"
+    })
     .state('home', {
       url: "/home",
       views: {
         "": {
           templateUrl: "/views/partials/home.html"
         }
-      }
-      
-    });
-    
+      } 
+    });    
   $urlRouterProvider.otherwise("/home");
 });

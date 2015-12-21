@@ -16,7 +16,9 @@
     </head>
     <body ng-app="myApp">
         <div id="header-container">{% include '../views/partials/header.html' %}</div>
-        <div>Hello World!</div>
-        <div ui-view></div>
+        <div id="content-wrapper">
+            <div id="content" ui-view></div>
+        </div>
+        <div id="footer-container">{% include '../views/partials/footer.html' %}</div>
     </body>
 </html>
