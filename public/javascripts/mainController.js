@@ -1,20 +1,23 @@
-var testApp = angular.module('testApp',[]);
+var myApp = angular.module('myApp');
 
-testApp.controller('MainController', function($scope) {
-  $scope.greeting = 'Hola!';
-  var connection =  mysql.createConnection({
-			host: 'localhost',
-			user: 'root',
-			password : '',
-			port : 3306,
-			database:'barcrawl'
+myApp.controller('HomeController', function($scope, $http, $interval) {
+	loadData();
+	// $interval(function () {
+	// 	loadData();
+	// }, 300);
+	function loadData(){
+		$http.get('http://localhost:3000/getAllBars').success(function(data){
+			$scope.bars = data;
+			$scope.topRatedBars = sortByRating(data);
+			console.log($scope.topRatedBars);
+		})
+	};
+	
+	function sortByRating(bars){
+		var topRated = bars.sort(function(a,b){
+			return b.rating - a.rating;
 		});
-		connection.query('SELECT * FROM user_account',function(err,rows){
-			if(err){
-				console.log("Error Selecting : %s ",err );
-			}
-			console.log(rows);
-      		$scope.users = rows;
-			connection.end();
-		});
+		return topRated;
+	}
 });
+

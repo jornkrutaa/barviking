@@ -1,6 +1,7 @@
-<div class="content-page">
+<div class="content-page" ng-controller="HomeController">
 	<div id="shout-out">- Norges største baroversikt -</div>
 	<img src="../images/testbar.jpg"/ class="carousel">
+	<div>{{topRatedBars[0].name}}</div>
 	<table id="quick-cities">
 		<tr>
 			<td><a href="#">Oslo</a></td>
@@ -13,28 +14,11 @@
 		<tr>
 			<td id="featured-content-1">
 				<h3>Topp 5</h3>
-				<table style="width: 100%;">
-					<tr>
-						<td style="border: 1px solid lightgray;">
-							<img src="../images/barcircus.jpg" style="border-right: 1px solid black; width: 60px; height: 60px; float: left; margin-right: 20px;"/> Bar Circus<br><span style="font-size: .7em;color: grey;">Trondheim</span></td>
-					</tr>
-					<tr>
-						<td style="border: 1px solid lightgray;">
-							<img src="../images/moskusbar.png" style="border-right: 1px solid black; width: 60px; height: 60px; float: left; margin-right: 20px;"/> Moskus Bar<br><span style="font-size: .7em;color: grey;">Trondheim</span></td>
-					</tr>
-					<tr>
-						<td style="border: 1px solid lightgray;">
-							<img src="../images/krambua.jpg" style="border-right: 1px solid black; width: 60px; height: 60px; float: left; margin-right: 20px;"/> Krambua<br><span style="font-size: .7em;color: grey;">Trondheim</span></td>
-					</tr>
-					<tr>
-						<td style="border: 1px solid lightgray;">
-							<img src="../images/rausbar.jpg" style="border-right: 1px solid black; width: 60px; height: 60px; float: left; margin-right: 20px;"/> Raus Bar<br><span style="font-size: .7em;color: grey;">Trondheim</span></td>
-					</tr>
-					<tr>
-						<td style="border: 1px solid lightgray;">
-							<img src="../images/bari.jpg" style="border-right: 1px solid black; width: 60px; height: 60px; float: left; margin-right: 20px;"/> Bari<br><span style="font-size: .7em;color: grey;">Trondheim</span></td>
-					</tr>
-				</table>
+					<ul class="featured-list">
+						<li ng-repeat="bar in topRatedBars | limitTo: 5">
+							<img src="../images/barcircus.jpg"/><span class="title"> {{bar.name}}</span><br><span class="sub-title">{{bar.municipality}}</span>
+						</li>
+					</ul>
 			</td>
 			<td id="featured-content-2">
 				<h3>Nær deg</h3>
