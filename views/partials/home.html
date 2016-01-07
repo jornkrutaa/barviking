@@ -1,7 +1,13 @@
-<div class="content-page" ng-controller="HomeController">
+<div class="content-page">
 	<div id="shout-out">- Norges største baroversikt -</div>
-	<img src="../images/testbar.jpg"/ class="carousel">
-	<div>{{topRatedBars[0].name}}</div>
+	<div class="carousel" ng-controller="CarouselCtrl">
+		<carousel interval="myInterval">
+			<slide ng-repeat="slide in slides" active="slide.active">
+			<img ng-src="{{slide.image}}" class="carousel-image">
+			</slide>
+		</carousel>
+	</div>
+	
 	<table id="quick-cities">
 		<tr>
 			<td><a href="#">Oslo</a></td>
@@ -10,7 +16,7 @@
 			<td><a href="#">Stavanger</a></td>
 		</tr>
 	</table>
-	<table id="featured-content">
+	<table id="featured-content" ng-controller="HomeController">
 		<tr>
 			<td id="featured-content-1">
 				<h3>Topp 5</h3>
