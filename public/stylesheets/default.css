@@ -4,6 +4,16 @@ html, body {
 	width: 100%;
 	height: 100%;
 	font-size: 10px;
+  color: #05204A;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+    font-family: 'Garamond', serif !important;
+}
+
+a{
+    cursor: pointer;
+    color: #05204A !important;
 }
 
 /*Header - For menu see Bootstrap menu*/
@@ -17,10 +27,11 @@ html, body {
 #logo{
 	float: left;
 	font-size: 2em;
+    padding-left: 25px;
 }
 
 #menu-wrapper{
-	width: 50%;
+	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 	background: white;
@@ -44,6 +55,91 @@ html, body {
     width: 100%;
 }
 
+/*Home Page*/
+
+#shout-out{
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    font-size: 1.4em;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+.carousel{
+    width: 100%;
+    height: 500px;
+}
+
+#quick-cities{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#quick-cities tr td{
+    width: 25%;
+    text-align: center;
+    font-size: 1.6em;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+#featured-content{
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#featured-content tr td{
+    width: 50%;
+    font-size: 1.2em;
+}
+
+.featured-list{
+    padding: 0;
+    list-style-type: none; 
+}
+
+.featured-list li img{
+    border-right: 1px solid black; 
+    width: 60px; 
+    height: 100%; 
+    float: left; 
+    margin-right: 20px;
+}
+
+.featured-list li .title{
+    font-size: 1.25em;
+    color: black;
+}
+
+.featured-list li .sub-title{
+    font-size: .7em;
+    color: grey;
+}
+
+.featured-list li{
+    border-bottom: 1px solid lightgray; 
+    border-right: 1px solid lightgray; 
+    border-left: 1px solid lightgray; 
+    border-top: none;
+    list-style: none; 
+    width: 100%; 
+    height: 60px;
+    display: block;
+    float: left;
+    margin-top: 1px;
+}
+
+.featured-list li:first-child{
+    border-top: 1px solid lightgray;
+}
+
+
 /*Footer*/
 
 #footer-wrapper{
@@ -62,12 +158,13 @@ html, body {
 /*Bootstrap menu*/
 
 #custom-bootstrap-menu.navbar-default{
-    font-size: 14px;
+    font-size: 1.1em;
     background-color: rgba(255, 255, 255, 1);
     border-width: 0px;
     border-radius: 0px;
 	background-image: none;
 	box-shadow: none;
+    padding-top: 10px;
 }
 
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
