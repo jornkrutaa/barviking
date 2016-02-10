@@ -1,0 +1,33 @@
+<!--<div class="shout-out">- Velkommen til Barviking -</div>
+<div id="login-container" ng-controller="LoginController">
+	<form id="login-form" method="post">
+		<div class="form-group">
+			<label for="email">E-post:</label>
+			<input type="text" class="form-control" id="email" ng-model="credentials.email">
+		</div>
+		<div class="form-group">
+			<label for="password">Passord:</label><span id="forgot-password-link">(<a>glemt passord?</a>)</span>
+			<input type="password" class="form-control" ng-model="credentials.password">
+		</div>
+		<div id="login-buttons-wrapper">
+			<button type="button" class="btn btn-success" ng-click="login(credentials)">Logg Inn</button>
+			<a href="/#/registerUser" id="registerUserLink">Opprett bruker</a>
+		</div>
+		<div ng-show="user.username">Successfully logged in as {{user.username}}</div>
+	</form>
+</div>-->
+
+<div class="shout-out">- Velkommen til Barviking -</div>
+<div id="login-container">
+	<form name="login-form" ng-controller="LoginController" ng-submit="login(credentials)" novalidate>
+		<label for="email">E-post:</label>
+		<input type="text"  class="form-control" id="email" ng-model="credentials.email"><br>
+		<label for="password">Passord:</label><span id="forgot-password-link">(<a>glemt passord?</a>)</span>
+		<input type="password"  class="form-control" id="password" ng-model="credentials.password"><br>
+		<div id="login-buttons-wrapper">
+			<button type="submit" class="btn btn-success">Logg Inn</button>
+			<a href="/#/registerUser" id="registerUserLink">Opprett bruker</a>
+			<div ng-show="user.username">Logget inn som <b>{{user.username}}</b>. Opprett cookies og session for å gjøre no nyttig med det.</div>
+		</div>
+	</form>
+</div>
