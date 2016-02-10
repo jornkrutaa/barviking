@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('HomeController', function($scope, $http, $interval) {
+myApp.controller('HomeController', function($scope, $http, $interval, $state) {
 	loadData();
 	// $interval(function () {
 	// 	loadData();

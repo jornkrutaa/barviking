@@ -1,5 +1,5 @@
 <div class="content-page">
-	<div id="shout-out">- Norges største baroversikt -</div>
+	<div class="shout-out">- Norges største baroversikt -</div>
 	<div class="carousel" ng-controller="CarouselCtrl">
 		<carousel interval="myInterval">
 			<slide ng-repeat="slide in slides" active="slide.active">
@@ -20,11 +20,11 @@
 		<tr>
 			<td id="featured-content-1">
 				<h3>Topp 5</h3>
-					<ul class="featured-list">
-						<li ng-repeat="bar in topRatedBars | limitTo: 5">
-							<img src="../images/barcircus.jpg"/><span class="title"> {{bar.name}}</span><br><span class="sub-title">{{bar.municipality}}</span>
-						</li>
-					</ul>
+				<ul class="featured-list">
+					<li ng-repeat="bar in topRatedBars | limitTo: 5">
+						<img src="../images/barcircus.jpg"/><span class="title"> {{bar.name}}</span><br><span class="sub-title">{{bar.municipality}}</span>
+					</li>
+				</ul>
 			</td>
 			<td id="featured-content-2">
 				<h3>Nær deg</h3>

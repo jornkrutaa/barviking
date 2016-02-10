@@ -9,22 +9,33 @@ var bodyParser = require('body-parser');
 var gulp = require('gulp');
 var swig = require('swig');
 var cons = require('consolidate');
+var passwordHash = require('password-hash');
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 var routes = require('./routes/index');
 
 
 var app = express();
 
-// MySQL Connection
-app.use(
-    connection(mysql,{
-        host: 'localhost',
-        user: 'root',
-        password : '',
-        port : 3306,
-        database:'barviking'
-    },'request')
-);
+//HTTPS Keys
+var HTTPS_PORT = 443;
+var options = {
+  key: fs.readFileSync('./ssl/key.pem'),
+  cert: fs.readFileSync('./ssl/cert.pem')
+}
+
+//MySQL Connection
+// app.use(
+//     connection(mysql,{
+//         host: 'localhost',
+//         user: 'root',
+//         password : 'barcrawl16',
+//         port : 3307,
+//         database:'barcrawl'
+//     },'request')
+// );
 
 // view engine setup
 app.engine('html', cons.swig);
@@ -54,6 +65,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err.message);
     res.render('error', {
       message: err.message,
       error: err
@@ -71,5 +83,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// var unsecServer = http.createServer(app).listen(81, function(){
+//   console.log("HTTP Server listen on port 81");
+// });
+
+var secServer = https.createServer(options, app).listen(HTTPS_PORT, function(){
+  console.log("Secure Server listen on port 443");
+});
 
 module.exports = app;

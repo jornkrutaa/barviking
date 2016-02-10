@@ -37,6 +37,10 @@ a{
 	background: white;
 }
 
+#login-button{
+    color: white !important;
+}
+
 /*Content*/
 
 #content-wrapper{
@@ -57,7 +61,7 @@ a{
 
 /*Home Page*/
 
-#shout-out{
+.shout-out{
     width: 100%;
     text-align: center;
     border-top: 1px solid lightgray;
@@ -143,6 +147,33 @@ a{
     border-top: 1px solid lightgray;
 }
 
+/*Login Page*/
+#login-container{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #eeeeee;
+    padding: 100px 10px 50px 10px;
+}
+
+#login-form{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#forgot-password-link{
+    float: right;
+    margin-right: 10px;
+}
+
+#registerUserLink{
+    padding-left: 15px;
+}
+
+#login-buttons-wrapper{
+    margin-top: 40px;
+}
 
 /*Footer*/
 
