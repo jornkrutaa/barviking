@@ -1,7 +1,9 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('HomeController', function($scope, $http, $interval, $state) {
+myApp.controller('HomeController', function($scope, $http, $interval, $state, AuthService) {
 	loadData();
+	// setUserData();
+	
 	// $interval(function () {
 	// 	loadData();
 	// }, 300);
@@ -10,8 +12,18 @@ myApp.controller('HomeController', function($scope, $http, $interval, $state) {
 			$scope.bars = data;
 			$scope.topRatedBars = sortByRating(data);
 			console.log($scope.topRatedBars);
-		})
+		});
 	};
+	
+	// function setUserData(){
+	// 	var user = AuthService.fillAuthData();
+	// 	if(user){
+	// 		//FORTSETT HER: USER HENTES, NÅ MÅ HEADER OSV OPPDATERES
+	// 		$scope.user = user;
+	// 		console.log("$scope.user - HomeController");
+	// 		console.log($scope.user);
+	// 	}
+	// }
 	
 	function sortByRating(bars){
 		var topRated = bars.sort(function(a,b){
@@ -20,4 +32,3 @@ myApp.controller('HomeController', function($scope, $http, $interval, $state) {
 		return topRated;
 	}
 });
-

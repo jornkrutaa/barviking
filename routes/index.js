@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql2');
 var pwHash = require('password-hash');
 var fs = require('fs');
+var jwt = require('jsonwebtoken');
 
 var pool = mysql.createPool({
     connectionLimit : 100, //important
@@ -19,6 +20,7 @@ var pool = mysql.createPool({
 });
 
 var user = {};
+var SECRET = 'ALLEBARANE';
 
 // router.all('*', function(req, res, next){
 //   if (req.secure) {
@@ -32,14 +34,17 @@ var user = {};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    //res.render('index', { title: 'Bar Viking' });
-    prepareAndRenderIndex(req,res);
-  //res.redirect('https://localhost:'+HTTPS_PORT+req.url);
+    res.render('index', { title: 'Bar Viking' }); //Only original
 });
 
 router.get('/views/partials/:name', function (req, res) {
   var name = req.params.name;
   res.render('../views/partials/' + name);
+});
+
+router.get('/getBarprofile', function (req, res) {
+  var id = req.query.barid;
+  var bar = getBarprofile(req,res,id);
 });
 
 router.get('/getAllBars', function(req, res, next) {
@@ -49,10 +54,18 @@ router.get('/getAllBars', function(req, res, next) {
 router.post('/logInAttempt', function(req, res, next){
     var fullBody = "";
     req.on('data', function(chunk) {
-      // append the current chunk of data to the fullBody variable
       fullBody += chunk.toString();
       var decodedBody = JSON.parse(fullBody);
       var user = checkLogin(req, res, decodedBody.params.email, decodedBody.params.pw);
+    });
+});
+
+router.post('/uploadImage', function(req,res,next){
+    req.on('data', function(chunk) {
+        var imageData = {'image': chunk, 'size': req.headers.size, 'name': req.headers.name, 'type': req.headers.type};
+        console.log(imageData);
+        console.log(req.headers);
+        return insertImage(req,res,imageData);
     });
 });
 
@@ -60,26 +73,46 @@ router.get('*', function(req, res, next) {
   res.render('index', { title: 'Bar Viking' });
 });
 
-function prepareAndRenderIndex(req,res){
+function insertImage(req,res,data){
     pool.getConnection(function(err,connection){
-        console.log("connected!");
         if (err) {
           connection.release();
           res.json({"code" : 100, "status" : "Error in connection database"});
           return;
-        } 
+        }
         
-        var barQuery = "select AVG(ub.rating) rating, b.* from bar b, user_bar ub where b.bar_id = ub.bar_id group by b.name order by b.name asc"
-        connection.query(barQuery,function(err,rows)     {
+        var imgQuery = "insert into bar_image(image_type, image, image_size, image_name) values (?,?,?,?)";
+        connection.query(imgQuery, [data.type, data.image, data.size, data.name], function(err,rows){
             if(err){
                 console.log("Error Selecting : %s ",err );
             }
-            
-            var topRated = rows.sort(function(a,b){
-                return b.rating - a.rating;
-            })
-            res.render('index', { title: 'Bar Viking', data: rows });
             connection.release();
+            return;
+            // return res.json(rows);
+        });
+        
+        connection.on('error', function(err) {      
+              res.json({"code" : 100, "status" : "Error in connection database"});
+              return;     
+        });
+    });
+}
+
+function getBarprofile(req,res,id){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({"code" : 100, "status" : "Error in connection database"});
+          return;
+        }
+        
+        var barQuery = "select b.*, ifnull((select bi.image from bar_image bi where b.image_id = bi.image_id), null) image, ifnull((select bi.image_type from bar_image bi where b.image_id = bi.image_id), 'image/png') image_type, p.name postal_place from bar b, place p where bar_id = ? and b.postal_no = p.postal_no";
+        connection.query(barQuery, [id], function(err,rows){
+            if(err){
+                console.log("Error Selecting : %s ",err );
+            }
+            // console.log(rows[0].image);
+            return res.json(rows);
         });
         
         connection.on('error', function(err) {      
@@ -120,7 +153,7 @@ function checkLogin(req, res, email, pw){
           return;
         }
         
-        connection.query("select username, password, first_name, last_name, status_id, account_type from user_account where email = ?", [email], function(err,rows){
+        connection.query("select user_id, username, password, first_name, last_name, status_id, account_type from user_account where email = ?", [email], function(err,rows){
             if(err){
                 console.log("Error Selecting : %s ",err );
             }
@@ -129,6 +162,12 @@ function checkLogin(req, res, email, pw){
                 if(verifyPw){
                     delete rows[0].password;
                     user = rows[0];
+                    
+                    //Create jwt
+                    var claim = user;
+                    user.body = {
+                        token: jwt.sign(claim, SECRET)
+                    }
                     return res.json(user);
                 } else{
                     return false;

@@ -1,4 +1,4 @@
-<div id="header-wrapper" ng-controller="LoginController">
+<div id="header-wrapper" ng-controller="AppController">
 	<div id="menu-wrapper">
 		<div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
 			<div id="logo">Barviking</div>
@@ -8,11 +8,17 @@
 				</div>
 				<div class="collapse navbar-collapse navbar-menubuilder">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/#/index">Hjem</a>
+						<li>
+							<a href="/#/index">Hjem</a>
 						</li>
-						<li><a href="/#/bars">Barer</a>
+						<li>
+							<a href="/#/bars">Barer</a>
 						</li>
-						<li><p class="navbar-btn"><a href="/#/login" id="login-button" role="button" class="btn btn-success">Logg Inn</a></p>
+						<li>
+							<div ng-show="user"><div id="header-user-img"><img src="../images/Male.png"/></div>{{user.first_name}} {{user.last_name}}</div>
+						</li>
+						<li>
+							<p class="navbar-btn" ng-show="!user"><a href="/#/login" id="login-button" role="button" class="btn btn-success">Logg Inn</a></p>
 						</li>
 					</ul>
 				</div>

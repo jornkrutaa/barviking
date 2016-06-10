@@ -1,0 +1,39 @@
+<div class="content-page" ng-controller="BarProfileController">
+	<div class="shout-out">- Come as you are -</div>
+	<table id="bar-profile-table">
+		<tr>
+			<td class="left-profile-column" id="profile-img-cell" rowspan="2"><img id="profile-img" src="#"/></td>	
+			<td class="center-profile-column" id="bar-name-cell">
+				<span id="bar-profile-name">{{bar.name}}</span><br>
+				<span id="bar-profile-address">{{bar.address}}, {{bar.postal_place}}</span>
+			</td>	
+			<td class="right-profile-column"></td>
+		</tr>
+		<tr>
+			<td class="center-profile-column" id="bar-about-cell">{{bar.description}}</td>	
+			<td class="right-profile-column"></td>
+		</tr>
+		<tr>
+			<td class="left-profile-column" id="bar-info-cell">
+				<div id="social-icon-group">
+					<a id="social-facebook" title="Facebook"><img class="social-icon" src="/images/facebook.svg"></a>
+					<a id="social-twitter" title="Twitter"><img class="social-icon" src="/images/twitter.svg"></a>
+					<a id="social-spotify" title="Spotify"><img class="social-icon" src="/images/spotify.svg"></a>
+					<a id="social-instagram" title="Instagram"><img class="social-icon" src="/images/instagram.svg"></a>
+				</div>
+			</td>
+				
+			<td class="center-profile-column" id="events-cell">Events</td>	
+			<td class="right-profile-column"></td>
+		</tr>
+		<tr>	
+			<td class="left-profile-column" id="instagram-cell" rowspan="2">
+				<div id="instafeed">
+					<div id="hashtag"># {{bar.hashtag}}</div>
+				</div>
+			</td>
+			<td class="center-profile-column" id="comments-cell">Comments</td>	
+			<td class="right-profile-column"></td>
+		</tr>
+	</table>
+</div>
