@@ -41,6 +41,11 @@ a{
     color: white !important;
 }
 
+#header-user-img{
+    width: 100%;
+    text-align: center;
+}
+
 /*Content*/
 
 #content-wrapper{
@@ -145,6 +150,104 @@ a{
 
 .featured-list li:first-child{
     border-top: 1px solid lightgray;
+}
+
+/*Bar Profile Page*/
+
+#bar-profile-table{
+    width: 100%;
+}
+
+#bar-profile-table tr td{
+    vertical-align: top;
+    /*border: 1px dotted black;*/
+}
+
+.left-profile-column{
+    width: 10%;
+}
+
+.right-profile-column{
+    width: 10%;
+}
+
+.center-profile-column{
+    width: 80%;
+    padding: 0 20px 5px 10px; 
+}
+
+#bar-name-cell{
+    height: 3em;
+}
+
+#bar-about-cell{
+    font-size: 1.1em;
+}
+
+#bar-profile-name{
+    font-size: 2em;
+}
+
+#bar-profile-address{
+    font-size: 1em;
+    font-style: italic;
+}
+
+#profile-img{
+    height: 250px;
+    width: 250px;
+    border: 1px solid lightgray;
+}
+
+#social-icon-group{
+    text-align: center;
+    padding: 5px 0 5px 0;
+}
+
+
+.social-icon{
+    height: 40px;
+    width: 40px;
+}
+.social-icon:hover{
+    -webkit-filter: contrast(2);
+    filter: contrast(2);
+}
+
+/*BarProfile - Instafeed*/
+#instafeed {
+    /*width: 70%;*/
+    /*margin: 0px 15% 0px 15%;*/
+    height: auto;
+    text-align: center;
+    font-size: 1em;
+    /*background: #4D7EA8;*/
+    /*color: white;*/
+    padding: 25px 0px;
+    /*border-top: 1px solid black;*/
+    display: inline-block;
+}
+
+#instafeed  img{
+    border-radius: 100px;
+    height: 120px;
+    width: 120px;
+    padding: 5px;
+}
+
+#instafeed img:hover {
+    -webkit-filter: contrast(2);
+    filter: contrast(2);
+    padding: 0px;
+}
+
+#hashtag{
+    transition: color 1s ease;
+    color: lightgray;
+}
+
+#hashtag:hover{
+    color: black;
 }
 
 /*Login Page*/

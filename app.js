@@ -13,6 +13,7 @@ var passwordHash = require('password-hash');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
+var jwt = require('jsonwebtoken');
 
 var routes = require('./routes/index');
 
